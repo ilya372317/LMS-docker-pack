@@ -20,6 +20,9 @@ services:
       - db
     links:
      - db
+    extra_hosts:
+     - "host.docker.internal:host-gateway"
+
 
   db:
     restart: ${RESTART}
