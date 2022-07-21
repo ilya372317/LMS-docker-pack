@@ -9,8 +9,6 @@ services:
       - ${BACKEND_SRC}:${BACKEND_SRC_CONTAINER}
       - ${NGINX_CONFIG}:${NGINX_CONFIG_CONTAINER}
     working_dir: ${RELEASE_BACKEND_SRC_CONTAINER}
-    links:
-      - php
 
   php:
     restart: ${RESTART}
@@ -20,13 +18,18 @@ services:
     working_dir: ${RELEASE_BACKEND_SRC_CONTAINER}
     depends_on:
       - db
+    links:
+     - db
 
   db:
     restart: ${RESTART}
-    build: ./db
-    command: --default-authentication-plugin=mysql_native_password
+    image: mysql:latest
+    ports:
+      - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_DB_PASS}
       - MYSQL_DATABASE=game
+      - MYSQL_USER=game
+      - MYSQL_PASSWORD=123
     volumes:
       - ${MYSQL_DB_PATH}:${MYSQL_DB_PATH_CONTAINER}

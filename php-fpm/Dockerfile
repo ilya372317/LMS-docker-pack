@@ -1,5 +1,5 @@
 FROM php:8.1-fpm
-RUN apt-get update && apt-get -y install mc vim zlib1g zlib1g-dev libpng-dev libjpeg62-turbo-dev mariadb-client \
+RUN apt-get update && apt-get -y install mc vim zlib1g zlib1g-dev libpng-dev libjpeg62-turbo-dev mariadb-client libicu-dev \
     libfreetype6-dev netcat supervisor libcurl4-openssl-dev libzip-dev \
     && docker-php-ext-install bcmath && docker-php-ext-enable bcmath \
     && docker-php-ext-install mysqli && docker-php-ext-enable mysqli \
@@ -10,7 +10,8 @@ RUN apt-get update && apt-get -y install mc vim zlib1g zlib1g-dev libpng-dev lib
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd \
     && docker-php-ext-install sockets \
-    && docker-php-ext-install zip
+    && docker-php-ext-install zip \
+    && docker-php-ext-install intl && docker-php-ext-enable intl
 
 ARG PUID=1000
 ENV PUID ${PUID}
