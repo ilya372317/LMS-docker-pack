@@ -1,5 +1,6 @@
 {
     "require": {
-        "symfony/asset": "^6.1"
+        "symfony/asset": "^6.1",
+        "symfony/mailer": "^6.1"
     }
 }

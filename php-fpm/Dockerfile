@@ -1,6 +1,6 @@
 FROM php:8.1-fpm
-RUN apt-get update && apt-get -y install mc vim zlib1g zlib1g-dev libpng-dev libjpeg62-turbo-dev mariadb-client libicu-dev \
-    libfreetype6-dev netcat supervisor libcurl4-openssl-dev libzip-dev \
+RUN apt-get update && apt-get -y install mc vim zlib1g zlib1g-dev libpng-dev libjpeg62-turbo-dev mariadb-client libicu-dev mailutils \
+    libfreetype6-dev netcat supervisor libcurl4-openssl-dev libzip-dev git \
     && docker-php-ext-install bcmath && docker-php-ext-enable bcmath \
     && docker-php-ext-install mysqli && docker-php-ext-enable mysqli \
     && docker-php-ext-install pdo && docker-php-ext-enable pdo \
