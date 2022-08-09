@@ -1,3 +1,4 @@
 backend/
 frontend/
 db/mysql/
+.idea/
